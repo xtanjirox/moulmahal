@@ -4,13 +4,19 @@ WORKDIR app/
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
+ENV PYTHONPATH /app
 
 COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
 COPY moulmahal /app
 
-RUN python manage.py makemigrations
-RUN python manage.py migrate
+# Set environment variables for superuser details
+ENV SUPERUSER_USERNAME=myadmin
+ENV SUPERUSER_EMAIL=admin@example.com
+ENV SUPERUSER_PASSWORD=password123
 
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+# RUN chmod +x ./run_server.sh
+
+
+ENTRYPOINT python manage.py runserver

@@ -1,0 +1,15 @@
+version: '3.9'
+
+services:
+  moulmahal:
+    build: .
+    command:
+      - python manage.py migrate
+    ports:
+      - "8000:8000"
+    networks:
+      - moulmahal_database_network
+
+networks:
+  moulmahal_database_network:
+    external: true
