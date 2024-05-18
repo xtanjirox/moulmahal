@@ -1,4 +1,8 @@
 #!/bin/bash
 
 python manage.py migrate
-python manage.py runserver
+DJANGO_SUPERUSER_PASSWORD=my_password ./manage.py createsuperuser \
+    --no-input \
+    --username=my_user \
+    --email=my_user@domain.com
+python manage.py runserver 0.0.0.0:8000

@@ -3,6 +3,20 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.venv" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_commit_ts" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_dynshmem" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_logical" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_multixact" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_notify" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_replslot" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_serial" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_snapshots" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_stat_tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_subtrans" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_tblspc" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_twophase" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_wal" />
+      <excludeFolder url="file://$MODULE_DIR$/data/db/pg_xact" />
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
     <orderEntry type="jdk" jdkName="Python 3.11 (moulmahal)" jdkType="Python SDK" />
