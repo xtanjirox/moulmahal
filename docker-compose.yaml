@@ -17,6 +17,8 @@ services:
   moulmahal:
     build: .
     command: bash -c "chmod +x ./run_server.sh && ./run_server.sh"
+    environment:
+      DB_HOST: postgres_db
     volumes:
       - ./moulmahal:/app
     depends_on:
