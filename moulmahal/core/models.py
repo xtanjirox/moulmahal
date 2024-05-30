@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils import timezone
+from django.urls import reverse_lazy
 
 
 class Clients(models.Model):
@@ -11,6 +12,18 @@ class Clients(models.Model):
     class Meta:
         db_table = 'clients'
         verbose_name_plural = 'clients'
+        constraints = [
+            models.UniqueConstraint(fields=['client_phone'], name='unique client phone')
+        ]
+
+    def __str__(self):
+        return str(self.client_id) + '-' + str(self.client_name)
+
+    def get_absolute_url(self):
+        return reverse_lazy('clients-update', kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse_lazy('clients-delete', kwargs={"pk": self.pk})
 
 
 class Products(models.Model):
@@ -27,6 +40,15 @@ class Products(models.Model):
         db_table = 'products'
         verbose_name_plural = 'products'
 
+    def __str__(self):
+        return str(self.product_id) + '-' + str(self.product_title)
+
+    def get_absolute_url(self):
+        return reverse_lazy('products-update', kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse_lazy('products-delete', kwargs={"pk": self.pk})
+
 
 class Costs(models.Model):
     cost_id = models.BigAutoField(primary_key=True)
@@ -39,6 +61,15 @@ class Costs(models.Model):
         db_table = 'costs'
         verbose_name_plural = 'costs'
 
+    def __str__(self):
+        return str(self.cost_id) + '-' + str(self.cost_type)
+
+    def get_absolute_url(self):
+        return reverse_lazy('costs-update', kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse_lazy('costs-delete', kwargs={"pk": self.pk})
+
 
 class Orders(models.Model):
     order_id = models.BigAutoField(primary_key=True)
@@ -49,13 +80,22 @@ class Orders(models.Model):
         db_table = 'orders'
         verbose_name_plural = 'orders'
 
+    def get_absolute_url(self):
+        return reverse_lazy('orders-update', kwargs={"pk": self.pk})
+
+    def get_delete_url(self):
+        return reverse_lazy('orders-delete', kwargs={"pk": self.pk})
+
 
 class OrderItems(models.Model):
     order_item_id = models.BigAutoField(primary_key=True)
     order = models.ForeignKey(Orders, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, default=1, on_delete=models.DO_NOTHING)
     quantity = models.IntegerField(default=0)
     price = models.FloatField(default=0)
 
     class Meta:
         db_table = 'order_items'
         verbose_name_plural = 'order_items'
+
+
